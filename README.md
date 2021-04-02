@@ -20,6 +20,7 @@ Data Structure
 - Add bird()
 - Draw canvas()
 - Game over ()
+- Add sounds
 
 Main.js
 - Splash Screen

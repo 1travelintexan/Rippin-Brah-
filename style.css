@@ -1,0 +1,39 @@
+body{
+    background-color: aqua;
+}
+
+h1{
+    text-shadow: 3px 12px black
+}
+
+.title{
+    height: 100px;
+    color: yellow;
+    font-size: 85px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.buttons{
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+#start{
+    height: 100px;
+    width: 250px;
+    font-size: 25px;
+    background-color: blue;
+    color: burlywood;
+}
+ #restart{
+    height: 100px;
+    width: 250px;
+    font-size: 25px;
+    background-color: blue;
+    color: burlywood;
+ }
