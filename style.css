@@ -1,15 +1,18 @@
 body{
     background-color: aqua;
+    background-image: url("beach .jpeg");
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 h1{
-    text-shadow: 3px 12px black
+    text-shadow: 3px 12px blue
 }
 
 .title{
     height: 100px;
     color: yellow;
-    font-size: 85px;
+    font-size: 100px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     display: flex;
     align-items: flex-start;
@@ -18,7 +21,7 @@ h1{
 .buttons{
     height: 300px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
 
 }
@@ -26,14 +29,16 @@ h1{
 #start{
     height: 100px;
     width: 250px;
-    font-size: 25px;
+    font-size: 45px;
     background-color: blue;
     color: burlywood;
+    box-shadow: 4px 4px black;
 }
  #restart{
     height: 100px;
     width: 250px;
-    font-size: 25px;
+    font-size: 45px;
     background-color: blue;
     color: burlywood;
+    box-shadow: 4px 4px black;
  }
