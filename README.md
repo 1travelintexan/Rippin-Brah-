@@ -13,7 +13,13 @@ Backlog
 - Restart after you lose.
 
 Data Structure
-- functions
+- game ()
+- Start()
+- Add surfer()
+- addrock()
+- Add bird()
+- Draw canvas()
+- Game over ()
 
 Main.js
 - Splash Screen
