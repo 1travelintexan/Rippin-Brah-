@@ -29,6 +29,8 @@ ball.src = './pngkit_pokeball-icon-png_2017019.png'
 
 let title = document.querySelector('#title')
 let gameOver = document.querySelector('#gameOver')
+let rockX = 500
+let ballX = 750
 let isGameOver= false;
 let intervalId = 0
 let score = 0
@@ -242,9 +244,12 @@ function start() {
     //foreground
     drawSand()
     drawWave()
-    ctx.drawImage(rock, 500, 350, 300, 200)
-    ctx.drawImage(ball, 750, 190, 70, 70)
+    ctx.drawImage(rock, rockX, 350, 300, 200)
+    ctx.drawImage(ball, ballX, 190, 70, 70)
     ctx.drawImage(pika, 80, 250, 90, 150)
+    rockX = rockX - 2
+    ballX = ballX - 4
+
     canvas.style.display = 'block'
     startBtn.style.display = 'none'
     restartBtn.style.display = 'none'
@@ -254,7 +259,14 @@ function start() {
     ctx.font = '40px Georgia'
     ctx.fillStyle = 'black'
     ctx.fillText(`Score is: ${score}`, canvas.width / 2 - 100, canvas.height - 30)
-    //background
+
+    //Game Over
+    if(isGameOver){
+        cancelAnimationFrame(intervalId)
+    }
+    else {
+        intervalId = requestAnimationFrame(start)
+    }
 
 
 }
