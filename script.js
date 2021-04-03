@@ -188,10 +188,11 @@ let score = 0
      
 
 function start() {
-    ctx.drawImage(bg, 0, 0)
-    drawWave()
+    ctx.drawImage(bg, 0, 0, canvas.width, 400)
+
     //foreground
     drawSand()
+    drawWave()
     ctx.drawImage(pika, 80, 250, 90, 150)
     canvas.style.display = 'block'
     startBtn.style.display = 'none'
@@ -201,7 +202,7 @@ function start() {
     // scoreboard
     ctx.font = '40px Georgia'
     ctx.fillStyle = 'black'
-    ctx.fillText(`Score is: ${score}`, canvas.width / 2 - 100, canvas.height - 60)
+    ctx.fillText(`Score is: ${score}`, canvas.width / 2 - 100, canvas.height - 30)
     //background
 
 
