@@ -16,6 +16,7 @@ Data Structure
 - game ()
 - Start()
 - Add surfer()
+- Draw wave
 - addrock()
 - Add bird()
 - Draw canvas()

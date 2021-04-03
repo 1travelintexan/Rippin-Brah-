@@ -1,18 +1,25 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rippin Brah!!!</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" >
 </head>
 <body>
-    <H1 class="title">Rippin Brah!</H1>
-    <div class="buttons">
-        <button id="start">Start Game</button>
-        <button id="restart">Restart</button>
+    <div id = "title">
+        <h1 >Rippin Brah!!!</h1>
     </div>
-    <canvas id="myCanvas" width="280" height="500"></canvas>
-    <script src="index.js"></script>
+    <div class = "buttons">
+        <button id = "start" >Start Game</button>
+        <div id = 'gameOver'>
+            <button id = "restart" >Restart Game</button>
+        </div>
+    </div>
+    <div>
+        <canvas class = "canvas" width = "600" height="800"></canvas>
+    </div>
+    <!-- connecting your js files -->
+    <script src="script.js" ></script>
 </body>
 </html>
