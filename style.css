@@ -2,27 +2,29 @@ body{
     background-color: aqua;
 }
 
-h1{
-    text-shadow: 3px 12px rgb(72, 72, 128);
-}
-
 #title{
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 280px;
+    text-align: center;
     color: yellow;
     font-size: 60px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-
+    text-shadow: 3px 12px rgb(32, 32, 43);
     background-image: url("beach .jpeg");
     background-repeat: no-repeat;
     background-size: 100%;
     height: 500px;
     margin-bottom: 0px;
-    
-
+}
+#title h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    margin-left: 230px; 
+}
+#title h5{
+    text-shadow: none;
+    color: blue;
+    text-shadow: 3px 3px rgb(32, 32, 43);
 }
 
 .buttons{
@@ -30,7 +32,7 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 0px;
+    margin: 0px;
 
 }
 
@@ -41,6 +43,7 @@ h1{
     background-color: blue;
     color: rgb(225, 225, 255);
     box-shadow: 4px 4px black;
+    margin-top: -300px;
 }
 
  #restart{
@@ -50,10 +53,33 @@ h1{
     background-color: blue;
     color: rgb(225, 225, 255);
     box-shadow: 4px 4px black;
+    margin-top: 800px;
  }
 
  .canvas{
      display: flex;
      align-items: center;
      justify-content: center;
+ }
+
+ #gameOver{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: yellow;
+    font-size: 60px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    text-shadow: 3px 12px rgb(18, 18, 26);
+    background-image: url("beach .jpeg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 500px;
+    margin-top: -350px;
+    margin-bottom: 0;
+}
+ #gameOver h5{
+    text-shadow: none;
+    color: blue;
+    text-shadow: 3px 3px rgb(32, 32, 43);
  }

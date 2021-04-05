@@ -11,6 +11,9 @@ let ctx = canvas.getContext('2d')
 let startBtn = document.querySelector('#start')
 let restartBtn = document.querySelector('#restart')
 
+// Game Over
+let gameOver = document.querySelector('#gameOver')
+
 // Background
 let bg = new Image()
 bg.src = './background.jpeg'
@@ -32,29 +35,22 @@ let bird = new Image()
 bird.src = './PixelArt.png'
 
 // Pika falling amount
-let pikaFall = 1.5, pikaX = 70, pikaY = 200;
+let pikaFall = 2, pikaX = 70, pikaY = 200;
 
 let title = document.querySelector('#title')
-let gameOver = document.querySelector('#gameOver')
 let rockX = 500
 let ballX = 750
 let isGameOver= false;
 let intervalId = 0
 let score = 0
-// Speed of objects
-let speed = 1
+let speed = 3
 
-
-// How to load images
-// let bg = document.createElement('img)
-// let bg = new Image()
-// bg.src = './images/bg.png
 
 //Foreground
 function drawSand(){
     ctx.beginPath()
     ctx.fillStyle = '#f2be7e'
-    ctx.fillRect(0, canvas.height-150, canvas.width, 300)
+    ctx.fillRect(0, canvas.height-150, canvas.width, 150)
     ctx.closePath()
 }
 
@@ -250,31 +246,36 @@ ctx.closePath()
 
 // Rock starting 
 let rockMovement = [
-    {x: canvas.width, y:canvas.height - 250},
-    {x: canvas.width + 1000, y: canvas.height - 250}
+    {x: canvas.width, y: canvas.height - 250},
+    // {x: canvas.width + 5000, y: canvas.height - 250}
 ]
 
 // Bird starting
 let birdMovement = [
-    {x:canvas.width+2500, y:120},
-    {x:canvas.width+3500, y:200}
+    {x:canvas.width + 2000, y: 120},
+    // {x:canvas.width + 6000, y:230}
 ]
 
 // Pokeball starting
 let ballMovement = [
-    {x:canvas.width+4200, y:600},
-    {x:canvas.width+500, y:800}
+    {x:canvas.width + 3500, y: 290},
 ]
 
 // Pikachu pumping on the wave
 document.addEventListener('mousedown' , () => {
-    pikaFall =  pikaFall * -1
+    pikaFall =  pikaFall * -1.5
 })
 document.addEventListener('mouseup' , () => {
     pikaFall = 1.5
 })
      
 function start() {
+    canvas.style.display = 'block'
+    startBtn.style.display = 'none'
+    restartBtn.style.display = 'none'
+    title.style.display = 'none'
+    gameOver.style.display = 'none'
+   
     ctx.drawImage(bg, 0, 0, canvas.width, 400)
 
     //foreground
@@ -285,10 +286,13 @@ function start() {
     for(let i=0; i< rockMovement.length; i++){
         ctx.drawImage(rock, rockMovement[i].x, rockMovement[i].y, 300, 200) 
 
-        rockMovement[i].x = rockMovement[i].x - speed * 2 
+        rockMovement[i].x = rockMovement[i].x - speed 
 
-        if(rockMovement[i].x + rock.width == 60){
+        if(rockMovement[i].x == 0){
             score ++
+        }
+        if(rockMovement[i].x < - 200){
+            rockMovement[i] = {x: 3000, y: canvas.height - 250}
         }
     }
 
@@ -296,63 +300,77 @@ function start() {
     for(let i = 0; i < birdMovement.length; i++){
         ctx.drawImage(bird, birdMovement[i].x, birdMovement[i].y, 120, 120) 
 
-        birdMovement[i].x = birdMovement[i].x - speed * 3
+        birdMovement[i].x = birdMovement[i].x - speed * 2
 
-        if(birdMovement[i].x + bird.width == 60){
+        if(birdMovement[i].x == 0){
             score ++
+        }
+        if(birdMovement[i].x < - 200){
+            birdMovement[i] = {x: 3000, y: 120}
         }
     }
 
     //Pokeball movement
     for(let i = 0; i < ballMovement.length; i++){
-        ctx.drawImage(ball, ballMovement[i].x, ballMovement[i].y, 120, 120) 
+        ctx.drawImage(ball, ballMovement[i].x, ballMovement[i].y, 90, 90) 
 
-        ballMovement[i].x = ballMovement[i].x - speed * 5
-        ballMovement[i].y = ballMovement[i].y - .3
+        ballMovement[i].x = ballMovement[i].x - speed * 2
         
-        if(ballMovement[i].x + ball.width == 60){
+        if(ballMovement[i].x == 0){
             score ++
         }
+        if(ballMovement[i].x < - 200){
+            ballMovement[i] = {x: 3000, y: 290}
+        }
     }
-
-    if(score > 5){
-        speed = speed + 1
-    }
-   
     ctx.drawImage(pika, pikaX, pikaY, 90, 90)
-
-    canvas.style.display = 'block'
-    startBtn.style.display = 'none'
-    restartBtn.style.display = 'none'
-    title.style.display = 'none'
     
     // scoreboard
     ctx.font = '40px Georgia'
     ctx.fillStyle = 'black'
     ctx.fillText(`Score is: ${score}`, canvas.width / 2 - 100, canvas.height - 20)
 
-    // Pikachu falling
+    // collision with ground, top and objects
+    if(pikaY  > canvas.height - 170 || pikaY < 120){
+        isGameOver = true
+    } else {
+        // Pikachu falling
     pikaY = pikaY + pikaFall
+    }
     
     //Game Over
     if(isGameOver){
         cancelAnimationFrame(intervalId)
+        bummerBrah()  
+        score = 0
+        speed = 3
     }
     else {
         intervalId = requestAnimationFrame(start)
     }
+
+    //increase speed with higher scores
+    // for(let i =0; i < score; i++){
+    //      if(score % 5 == 0){
+    //          speed = speed  +1
+    //     }
+    // }
 }
 
-function restart(){
-    isGameOver == false;
-    start()
+function bummerBrah(){
+    canvas.style.display = 'none'
+    startBtn.style.display = 'none'
+    restartBtn.style.display = 'block'
+    title.style.display = 'none'
+    gameOver.style.display = 'block'
 }
 
 function splash(){
-    canvas.style.display ='none'
-   restartBtn.style.display ='none'
-   title.style.display = 'block'
-   startBtn.style.display = 'block'
+    canvas.style.display = 'none'
+    restartBtn.style.display = 'none'
+    title.style.display = 'block'
+    startBtn.style.display = 'block'
+    gameOver.style.display = 'none'
 }
 
  // start game
@@ -366,7 +384,7 @@ window.addEventListener('load', () => {
 
     restartBtn.addEventListener('click', () => {
         // when you click the restart
-        restart()
-        
+        isGameOver == false; 
+        start()
     })
 })
