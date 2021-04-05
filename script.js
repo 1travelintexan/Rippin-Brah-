@@ -4,8 +4,12 @@ canvas.style.backgroundColor = "blue"
 canvas.style.border = '8px solid grey'
 canvas.style.marginTop = '-300px'
 
+// Music
+let audio = new Audio('./Su Turno.ogg')
+let sound = new Audio('./soundEffect.wav')
 //  Paintbrush
 let ctx = canvas.getContext('2d')
+let title = document.querySelector('#title')
 
 //  Buttons
 let startBtn = document.querySelector('#start')
@@ -37,12 +41,11 @@ bird.src = './PixelArt.png'
 // Pika falling amount
 let pikaFall = 2, pikaX = 70, pikaY = 200;
 
-let title = document.querySelector('#title')
+
 let rockX = 500
 let ballX = 750
 let isGameOver= false;
 let intervalId = 0
-let score = 0
 let speed = 3
 
 
@@ -54,7 +57,7 @@ function drawSand(){
     ctx.closePath()
 }
 
-// Wave
+// Draw Wave
 function drawWave(){
 ctx.beginPath()
 ctx.fillStyle = 'blue'
@@ -275,6 +278,8 @@ function start() {
     restartBtn.style.display = 'none'
     title.style.display = 'none'
     gameOver.style.display = 'none'
+    audio.play()
+    let score = 0
    
     ctx.drawImage(bg, 0, 0, canvas.width, 400)
 
@@ -283,7 +288,7 @@ function start() {
     drawWave()
 
 //rock movement
-    for(let i=0; i< rockMovement.length; i++){
+    for(let i = 0; i < rockMovement.length; i++){
         ctx.drawImage(rock, rockMovement[i].x, rockMovement[i].y, 300, 200) 
 
         rockMovement[i].x = rockMovement[i].x - speed 
@@ -342,8 +347,6 @@ function start() {
     if(isGameOver){
         cancelAnimationFrame(intervalId)
         bummerBrah()  
-        score = 0
-        speed = 3
     }
     else {
         intervalId = requestAnimationFrame(start)
