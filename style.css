@@ -63,6 +63,8 @@ body{
  }
 
  #gameOver{
+    width: 1200px;
+    height: 1200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,11 +73,11 @@ body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     text-shadow: 3px 12px rgb(18, 18, 26);
-    background-image: url("beach .jpeg");
+    background-image: url("./gameOver.jpeg");
     background-repeat: no-repeat;
-    background-size: 100%;
-    height: 500px;
-    margin-top: -350px;
+    background-size:1200px 800px ;
+    background-position:top center ;
+    margin-top: -430px;
     margin-bottom: 0;
 }
  #gameOver h5{

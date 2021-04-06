@@ -5,9 +5,9 @@ canvas.style.border = '8px solid grey'
 canvas.style.marginTop = '-300px'
 
 // Music
-let audio = new Audio('./Su Turno.ogg')
+let audio = new Audio('./Pokemon- TV Theme Song (Full) MUBlogger.mp3')
 let sound = new Audio('./soundEffect.wav')
-
+let gameOverSong = new Audio('./mixkit-sad-game-over-trombone-471.wav')
 //  Paintbrush
 let ctx = canvas.getContext('2d')
 let title = document.querySelector('#title')
@@ -43,12 +43,17 @@ bird.src = './PixelArt.png'
 let pikaFall = 2, pikaX = 70, pikaY = 200;
 
 
-let rockX = 500
-let ballX = 750
+// let rockX = 500
+// let ballX = 750
 let isGameOver= false;
 let intervalId = 0
-let speed = 4
+let speed = 6
 let score = 0
+
+//increase speed with higher score
+if(score == 5 || score==10 ||score==15){
+    speed ++
+}
 
 
 //Foreground
@@ -257,13 +262,13 @@ let rockMovement = [
 
 // Bird starting
 let birdMovement = [
-    {x:canvas.width + 2000, y: 120},
+    {x:canvas.width + 2000, y: 150},
     // {x:canvas.width + 6000, y:230}
 ]
 
 // Pokeball starting
 let ballMovement = [
-    {x:canvas.width + 3500, y: 290},
+    {x:canvas.width + 4000, y: 290},
 ]
 
 // Pikachu pumping on the wave
@@ -271,7 +276,7 @@ document.addEventListener('mousedown' , () => {
     pikaFall =  pikaFall * -1.5
 })
 document.addEventListener('mouseup' , () => {
-    pikaFall = 1.5
+    pikaFall = 2
 })
      
 function start() {
@@ -293,9 +298,10 @@ function start() {
         ctx.drawImage(rock, rockMovement[i].x, rockMovement[i].y, 300, 200) 
 
         rockMovement[i].x = rockMovement[i].x - speed 
-
-        if(rockMovement[i].x < 20){
+    
+        if(rockMovement[i].x === 0){
             score = score +1
+            sound.play()
         }
         if(rockMovement[i].x < - 200){
             rockMovement[i] = {x: 3000, y: canvas.height - 250}
@@ -306,10 +312,11 @@ function start() {
     for(let i = 0; i < birdMovement.length; i++){
         ctx.drawImage(bird, birdMovement[i].x, birdMovement[i].y, 120, 120) 
 
-        birdMovement[i].x = birdMovement[i].x - speed * 2
+        birdMovement[i].x = birdMovement[i].x - speed 
 
-        if(birdMovement[i].x <= 0){
+        if(birdMovement[i].x === 0){
             score ++
+            sound.play()
         }
         if(birdMovement[i].x < - 200){
             birdMovement[i] = {x: 3000, y: 120}
@@ -320,10 +327,11 @@ function start() {
     for(let i = 0; i < ballMovement.length; i++){
         ctx.drawImage(ball, ballMovement[i].x, ballMovement[i].y, 90, 90) 
 
-        ballMovement[i].x = ballMovement[i].x - speed * 2
+        ballMovement[i].x = ballMovement[i].x - speed * 1.5 
         
-        if(ballMovement[i].x <= 0){
+        if(ballMovement[i].x === 0){
             score ++
+            sound.play()
         }
         if(ballMovement[i].x < - 200){
             ballMovement[i] = {x: 3000, y: 290}
@@ -350,17 +358,12 @@ function start() {
         bummerBrah()  
         audio.pause()
         score = 0
+        speed = 5
+        gameOverSong.play()
     }
     else {
         intervalId = requestAnimationFrame(start)
     }
-
-    //increase speed with higher scores
-    // for(let i =0; i < score; i++){
-    //      if(score % 5 == 0){
-    //          speed = speed  +1
-    //     }
-    // }
 }
 
 function bummerBrah(){
@@ -384,6 +387,10 @@ function bummerBrah(){
         {x:canvas.width + 3500, y: 290}
     ]
     
+// Print score on Game Over
+    // ctx.font = '40px Georgia'
+    // ctx.fillStyle = 'black'
+    // ctx.fillText(`Score: ${score}`, canvas.width / 2 - 100, canvas.height - 20)
 }
 
 function splash(){
