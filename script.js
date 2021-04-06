@@ -7,6 +7,7 @@ canvas.style.marginTop = '-300px'
 // Music
 let audio = new Audio('./Su Turno.ogg')
 let sound = new Audio('./soundEffect.wav')
+
 //  Paintbrush
 let ctx = canvas.getContext('2d')
 let title = document.querySelector('#title')
@@ -46,7 +47,8 @@ let rockX = 500
 let ballX = 750
 let isGameOver= false;
 let intervalId = 0
-let speed = 3
+let speed = 4
+let score = 0
 
 
 //Foreground
@@ -279,7 +281,6 @@ function start() {
     title.style.display = 'none'
     gameOver.style.display = 'none'
     audio.play()
-    let score = 0
    
     ctx.drawImage(bg, 0, 0, canvas.width, 400)
 
@@ -287,14 +288,14 @@ function start() {
     drawSand()
     drawWave()
 
-//rock movement
+    //rock movement
     for(let i = 0; i < rockMovement.length; i++){
         ctx.drawImage(rock, rockMovement[i].x, rockMovement[i].y, 300, 200) 
 
         rockMovement[i].x = rockMovement[i].x - speed 
 
-        if(rockMovement[i].x == 0){
-            score ++
+        if(rockMovement[i].x < 20){
+            score = score +1
         }
         if(rockMovement[i].x < - 200){
             rockMovement[i] = {x: 3000, y: canvas.height - 250}
@@ -307,7 +308,7 @@ function start() {
 
         birdMovement[i].x = birdMovement[i].x - speed * 2
 
-        if(birdMovement[i].x == 0){
+        if(birdMovement[i].x <= 0){
             score ++
         }
         if(birdMovement[i].x < - 200){
@@ -321,7 +322,7 @@ function start() {
 
         ballMovement[i].x = ballMovement[i].x - speed * 2
         
-        if(ballMovement[i].x == 0){
+        if(ballMovement[i].x <= 0){
             score ++
         }
         if(ballMovement[i].x < - 200){
@@ -347,6 +348,8 @@ function start() {
     if(isGameOver){
         cancelAnimationFrame(intervalId)
         bummerBrah()  
+        audio.pause()
+        score = 0
     }
     else {
         intervalId = requestAnimationFrame(start)
@@ -361,11 +364,26 @@ function start() {
 }
 
 function bummerBrah(){
+    isGameOver = false
     canvas.style.display = 'none'
     startBtn.style.display = 'none'
     restartBtn.style.display = 'block'
     title.style.display = 'none'
     gameOver.style.display = 'block'
+
+    // Reset Pikachu and objects
+    pikaX = 70
+    pikaY = 200
+    rockMovement = [
+        {x: canvas.width, y: canvas.height - 250}
+    ]
+    birdMovement = [
+        {x:canvas.width + 2000, y: 120}
+    ]
+    ballMovement = [
+        {x:canvas.width + 3500, y: 290}
+    ]
+    
 }
 
 function splash(){
@@ -386,8 +404,7 @@ window.addEventListener('load', () => {
     })
 
     restartBtn.addEventListener('click', () => {
-        // when you click the restart
-        isGameOver == false; 
+        // when you click the restart 
         start()
     })
 })
