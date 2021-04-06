@@ -15,9 +15,12 @@ let title = document.querySelector('#title')
 //  Buttons
 let startBtn = document.querySelector('#start')
 let restartBtn = document.querySelector('#restart')
+let soundBtn =  document.querySelector('#sound')
 
 // Game Over
 let gameOver = document.querySelector('#gameOver')
+gameOver.style.border = '4px solid grey'
+
 
 // Background
 let bg = new Image()
@@ -42,19 +45,10 @@ bird.src = './images/PixelArt.png'
 // Pika falling amount
 let pikaFall = 2, pikaX = 70, pikaY = 200;
 
-
-// let rockX = 500
-// let ballX = 750
 let isGameOver= false;
 let intervalId = 0
-let speed = 6
+let speed = 8
 let score = 0
-
-//increase speed with higher score
-if(score == 5 || score==10 ||score==15){
-    speed ++
-}
-
 
 //Foreground
 function drawSand(){
@@ -292,6 +286,9 @@ function start() {
     drawSand()
     drawWave()
 
+//sound button
+    soundBtn.style.display = 'none'
+
 //draw Pikachu
     ctx.drawImage(pika, pikaX, pikaY, 90, 90)
 
@@ -301,7 +298,7 @@ function start() {
 
         rockMovement[i].x = rockMovement[i].x - speed 
     
-        if(rockMovement[i].x <=20 && rockMovement[i].x >=15){
+        if(rockMovement[i].x <=8 && rockMovement[i].x >=5){
             score ++
             sound.play()
         }
@@ -328,7 +325,7 @@ function start() {
 
         birdMovement[i].x = birdMovement[i].x - speed 
 
-        if(birdMovement[i].x <=20 && birdMovement[i].x >=15){
+        if(birdMovement[i].x <= 0 && birdMovement[i].x >= -3){
             score ++
             sound.play()
         }
@@ -353,9 +350,9 @@ function start() {
     for(let i = 0; i < ballMovement.length; i++){
         ctx.drawImage(ball, ballMovement[i].x, ballMovement[i].y, 90, 90) 
 
-        ballMovement[i].x = ballMovement[i].x - speed * 1.9
+        ballMovement[i].x = ballMovement[i].x - speed * 1.5
         
-        if(ballMovement[i].x <=5 && ballMovement[i].x >=-8){
+        if(ballMovement[i].x < 20 && ballMovement[i].x > 0){
             score ++
             sound.play()
         }
@@ -381,6 +378,17 @@ function start() {
     ctx.fillStyle = 'black'
     ctx.fillText(`Score is: ${score}`, canvas.width / 2 - 100, canvas.height - 20)
 
+    //increase speed with higher score
+    if(score >= 5){
+        speed = 10
+    }else if(score >= 10){
+        speed = 12
+    }else if(score >= 15){
+        speed = 15
+    }else{
+        speed = 8
+    }
+
     // collision with ground, top and objects
     if(pikaY  > canvas.height - 170 || pikaY < 120){
         isGameOver = true
@@ -395,7 +403,7 @@ function start() {
         bummerBrah()  
         audio.pause()
         score = 0
-        speed = 5
+        speed = 8
         gameOverSong.play()
     }
     else {
@@ -410,6 +418,7 @@ function bummerBrah(){
     restartBtn.style.display = 'block'
     title.style.display = 'none'
     gameOver.style.display = 'block'
+    soundBtn.style.display = 'none'
 
     // Reset Pikachu and objects
     pikaX = 70
@@ -436,6 +445,7 @@ function splash(){
     title.style.display = 'block'
     startBtn.style.display = 'block'
     gameOver.style.display = 'none'
+    soundBtn.style.display = 'block'
 }
 
  // start game
@@ -451,4 +461,14 @@ window.addEventListener('load', () => {
         // when you click the restart 
         start()
     })
-})
+// sound button
+    soundBtn.addEventListener('click', () => {
+        // when you click the sound
+        if(audio.play){
+            audio.pause()
+        }else{
+            audio.play
+        }
+    })
+        
+    })

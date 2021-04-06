@@ -59,6 +59,17 @@ body{
     margin-top: 800px;
  }
 
+ #sound{
+    height: 50px;
+    width: 130px;
+    font-size: 35px;
+    background-color: blue;
+    color: rgb(225, 225, 255);
+    box-shadow: 4px 4px black;
+    margin-top: -300px;
+    margin-left: 200px;
+ }
+
  .canvas{
      display: flex;
      align-items: center;
