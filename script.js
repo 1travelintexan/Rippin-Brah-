@@ -1,13 +1,13 @@
 //canvas
 let canvas = document.querySelector('canvas')
 canvas.style.backgroundColor = "blue"
-canvas.style.border = '8px solid grey'
+canvas.style.border = '4px solid grey'
 canvas.style.marginTop = '-300px'
 
 // Music
-let audio = new Audio('./Pokemon- TV Theme Song (Full) MUBlogger.mp3')
-let sound = new Audio('./soundEffect.wav')
-let gameOverSong = new Audio('./mixkit-sad-game-over-trombone-471.wav')
+let audio = new Audio('./audio/Pokemon- TV Theme Song (Full) MUBlogger.mp3')
+let sound = new Audio('./audio/soundEffect.wav')
+let gameOverSong = new Audio('./audio/mixkit-sad-game-over-trombone-471.wav')
 //  Paintbrush
 let ctx = canvas.getContext('2d')
 let title = document.querySelector('#title')
@@ -21,23 +21,23 @@ let gameOver = document.querySelector('#gameOver')
 
 // Background
 let bg = new Image()
-bg.src = './background.jpeg'
+bg.src = './images/background.jpeg'
 
 // Pikacu
 let pika = new Image()
-pika.src = './pikachu.png'
+pika.src = './images/pikachu.png'
 
 // Big rock
 let rock = new Image()
-rock.src = './rock.png'
+rock.src = './images/rock.png'
 
 // Ball
 let ball = new Image()
-ball.src = './pngkit_pokeball-icon-png_2017019.png'
+ball.src = './images/pngkit_pokeball-icon-png_2017019.png'
 
 //bird 
 let bird = new Image()
-bird.src = './PixelArt.png'
+bird.src = './images/PixelArt.png'
 
 // Pika falling amount
 let pikaFall = 2, pikaX = 70, pikaY = 200;
@@ -299,7 +299,7 @@ function start() {
 
         rockMovement[i].x = rockMovement[i].x - speed 
     
-        if(rockMovement[i].x === 0){
+        if(rockMovement[i].x <= 0){
             score = score +1
             sound.play()
         }
@@ -314,7 +314,7 @@ function start() {
 
         birdMovement[i].x = birdMovement[i].x - speed 
 
-        if(birdMovement[i].x === 0){
+        if(birdMovement[i].x == 0){
             score ++
             sound.play()
         }
@@ -329,7 +329,7 @@ function start() {
 
         ballMovement[i].x = ballMovement[i].x - speed * 1.5 
         
-        if(ballMovement[i].x === 0){
+        if(ballMovement[i].x == 0){
             score ++
             sound.play()
         }

@@ -3,12 +3,7 @@ body{
 }
 
 #title{
-    text-align: center;
-    color: yellow;
-    font-size: 60px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-shadow: 3px 12px rgb(32, 32, 43);
-    background-image: url("beach .jpeg");
+    background-image: url("./images/beach\ .jpeg");
     background-repeat: no-repeat;
     background-size: 100%;
     height: 500px;
@@ -18,13 +13,21 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 500px;
-    margin-left: 230px; 
+    color: yellow;
+    font-size: 120px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 3px 12px rgb(32, 32, 43); 
 }
 #title h5{
+    padding-top: 80px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
     text-shadow: none;
     color: blue;
-    text-shadow: 3px 3px rgb(32, 32, 43);
+    text-shadow: 2px 2px rgb(32, 32, 43);
 }
 
 .buttons{
@@ -73,7 +76,7 @@ body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     text-shadow: 3px 12px rgb(18, 18, 26);
-    background-image: url("./gameOver.jpeg");
+    background-image: url("./images/gameOver.jpeg");
     background-repeat: no-repeat;
     background-size:1200px 800px ;
     background-position:top center ;
