@@ -257,18 +257,16 @@ ctx.closePath()
 // Rock starting 
 let rockMovement = [
     {x: canvas.width, y: canvas.height - 250},
-    // {x: canvas.width + 5000, y: canvas.height - 250}
 ]
 
 // Bird starting
 let birdMovement = [
-    {x:canvas.width + 2000, y: 150},
-    // {x:canvas.width + 6000, y:230}
+    {x:canvas.width + 2000, y: 200},
 ]
 
 // Pokeball starting
 let ballMovement = [
-    {x:canvas.width + 4000, y: 290},
+    {x:canvas.width + 4000, y: 350},
 ]
 
 // Pikachu pumping on the wave
@@ -293,9 +291,12 @@ function start() {
     drawSand()
     drawWave()
 
+    //draw Pikachu
+    ctx.drawImage(pika, pikaX, pikaY, 90, 90)
+
     //rock movement
     for(let i = 0; i < rockMovement.length; i++){
-        ctx.drawImage(rock, rockMovement[i].x, rockMovement[i].y, 300, 200) 
+        ctx.drawImage(rock, rockMovement[i].x, rockMovement[i].y, 300, 300) 
 
         rockMovement[i].x = rockMovement[i].x - speed 
     
@@ -305,6 +306,18 @@ function start() {
         }
         if(rockMovement[i].x < - 200){
             rockMovement[i] = {x: 3000, y: canvas.height - 250}
+        }
+
+    //collision with objects (rock)
+        let circle1 = {radius:45 , x:pikaX, y:pikaY};
+        let circle2 = {radius:105, x:rockMovement[i].x + 60, y:canvas.height -130 };
+        
+        let dx = circle1.x - circle2.x;
+        let dy = circle1.y - circle2.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if(distance < circle1.radius + circle2.radius){
+            isGameOver = true
         }
     }
 
@@ -321,6 +334,18 @@ function start() {
         if(birdMovement[i].x < - 200){
             birdMovement[i] = {x: 3000, y: 120}
         }
+
+    //collision with objects (bird)
+        let circle1 = {radius:40 , x:pikaX, y:pikaY};
+        let circle2 = {radius:50, x:birdMovement[i].x+20, y:200 };
+        
+        let dx = circle1.x - circle2.x;
+        let dy = circle1.y - circle2.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if(distance < circle1.radius + circle2.radius){
+            isGameOver = true
+        }
     }
 
     //Pokeball movement
@@ -336,8 +361,19 @@ function start() {
         if(ballMovement[i].x < - 200){
             ballMovement[i] = {x: 3000, y: 290}
         }
+
+    //collision with objects (ball)
+        let circle1 = {radius:40 , x:pikaX, y:pikaY};
+        let circle2 = {radius:40, x:ballMovement[i].x+20, y:350 };
+        
+        let dx = circle1.x - circle2.x;
+        let dy = circle1.y - circle2.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if(distance < circle1.radius + circle2.radius){
+            isGameOver = true
+        }
     }
-    ctx.drawImage(pika, pikaX, pikaY, 90, 90)
     
     // scoreboard
     ctx.font = '40px Georgia'
@@ -351,6 +387,18 @@ function start() {
         // Pikachu falling
     pikaY = pikaY + pikaFall
     }
+
+    // //collision with objects (rock)
+    // let circle1 = {radius:45 , x: , y: };
+    // let circle2 = {radius; , x: , y: };
+    
+    // let dx = circle1.x - circle2.x;
+    // let dy = circle1.y - circle2.y;
+    // let distance = Math.sqrt(dx * dx + dy * dy);
+
+    // if(distance < circle1.radius + circle2.radius){
+    //     isGameOver = true
+    // }
     
     //Game Over
     if(isGameOver){
