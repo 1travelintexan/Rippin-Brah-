@@ -261,22 +261,23 @@ let rockMovement = [
 
 // Bird starting
 let birdMovement = [
-    {x:canvas.width + 2000, y: 200},
+    {x:canvas.width + 1800, y: 200},
 ]
 
 // Pokeball starting
 let ballMovement = [
-    {x:canvas.width + 4000, y: 350},
+    {x:canvas.width + 6000, y: 300},
 ]
 
 // Pikachu pumping on the wave
 document.addEventListener('mousedown' , () => {
-    pikaFall =  pikaFall * -1.5
+    pikaFall =  pikaFall * -2
 })
 document.addEventListener('mouseup' , () => {
     pikaFall = 2
 })
-     
+
+//start the game    
 function start() {
     canvas.style.display = 'block'
     startBtn.style.display = 'none'
@@ -287,30 +288,30 @@ function start() {
    
     ctx.drawImage(bg, 0, 0, canvas.width, 400)
 
-    //foreground
+//foreground
     drawSand()
     drawWave()
 
-    //draw Pikachu
+//draw Pikachu
     ctx.drawImage(pika, pikaX, pikaY, 90, 90)
 
-    //rock movement
+//rock movement
     for(let i = 0; i < rockMovement.length; i++){
         ctx.drawImage(rock, rockMovement[i].x, rockMovement[i].y, 300, 300) 
 
         rockMovement[i].x = rockMovement[i].x - speed 
     
-        if(rockMovement[i].x <= 0){
-            score = score +1
+        if(rockMovement[i].x <=20 && rockMovement[i].x >=15){
+            score ++
             sound.play()
         }
         if(rockMovement[i].x < - 200){
             rockMovement[i] = {x: 3000, y: canvas.height - 250}
         }
 
-    //collision with objects (rock)
+//collision with objects (rock)
         let circle1 = {radius:45 , x:pikaX, y:pikaY};
-        let circle2 = {radius:105, x:rockMovement[i].x + 60, y:canvas.height -130 };
+        let circle2 = {radius:105, x:rockMovement[i].x + 100, y:canvas.height -130 };
         
         let dx = circle1.x - circle2.x;
         let dy = circle1.y - circle2.y;
@@ -321,23 +322,23 @@ function start() {
         }
     }
 
-    //bird movement
+//bird movement
     for(let i = 0; i < birdMovement.length; i++){
         ctx.drawImage(bird, birdMovement[i].x, birdMovement[i].y, 120, 120) 
 
         birdMovement[i].x = birdMovement[i].x - speed 
 
-        if(birdMovement[i].x == 0){
+        if(birdMovement[i].x <=20 && birdMovement[i].x >=15){
             score ++
             sound.play()
         }
         if(birdMovement[i].x < - 200){
-            birdMovement[i] = {x: 3000, y: 120}
+            birdMovement[i] = {x: 3000, y: 200}
         }
 
     //collision with objects (bird)
         let circle1 = {radius:40 , x:pikaX, y:pikaY};
-        let circle2 = {radius:50, x:birdMovement[i].x+20, y:200 };
+        let circle2 = {radius:40, x:birdMovement[i].x+20, y:200 };
         
         let dx = circle1.x - circle2.x;
         let dy = circle1.y - circle2.y;
@@ -352,19 +353,19 @@ function start() {
     for(let i = 0; i < ballMovement.length; i++){
         ctx.drawImage(ball, ballMovement[i].x, ballMovement[i].y, 90, 90) 
 
-        ballMovement[i].x = ballMovement[i].x - speed * 1.5 
+        ballMovement[i].x = ballMovement[i].x - speed * 1.9
         
-        if(ballMovement[i].x == 0){
+        if(ballMovement[i].x <=5 && ballMovement[i].x >=-8){
             score ++
             sound.play()
         }
         if(ballMovement[i].x < - 200){
-            ballMovement[i] = {x: 3000, y: 290}
+            ballMovement[i] = {x: 3000, y: 300}
         }
 
     //collision with objects (ball)
         let circle1 = {radius:40 , x:pikaX, y:pikaY};
-        let circle2 = {radius:40, x:ballMovement[i].x+20, y:350 };
+        let circle2 = {radius:40, x:ballMovement[i].x+20, y:300 };
         
         let dx = circle1.x - circle2.x;
         let dy = circle1.y - circle2.y;
@@ -388,18 +389,6 @@ function start() {
     pikaY = pikaY + pikaFall
     }
 
-    // //collision with objects (rock)
-    // let circle1 = {radius:45 , x: , y: };
-    // let circle2 = {radius; , x: , y: };
-    
-    // let dx = circle1.x - circle2.x;
-    // let dy = circle1.y - circle2.y;
-    // let distance = Math.sqrt(dx * dx + dy * dy);
-
-    // if(distance < circle1.radius + circle2.radius){
-    //     isGameOver = true
-    // }
-    
     //Game Over
     if(isGameOver){
         cancelAnimationFrame(intervalId)
@@ -429,10 +418,10 @@ function bummerBrah(){
         {x: canvas.width, y: canvas.height - 250}
     ]
     birdMovement = [
-        {x:canvas.width + 2000, y: 120}
+        {x:canvas.width + 1800, y: 200}
     ]
     ballMovement = [
-        {x:canvas.width + 3500, y: 290}
+        {x:canvas.width + 6000, y: 300}
     ]
     
 // Print score on Game Over
