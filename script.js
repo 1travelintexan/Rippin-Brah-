@@ -8,6 +8,7 @@ canvas.style.marginTop = '-300px'
 let audio = new Audio('./audio/Pokemon- TV Theme Song (Full) MUBlogger.mp3')
 let sound = new Audio('./audio/soundEffect.wav')
 let gameOverSong = new Audio('./audio/mixkit-sad-game-over-trombone-471.wav')
+
 //  Paintbrush
 let ctx = canvas.getContext('2d')
 let title = document.querySelector('#title')
@@ -16,11 +17,11 @@ let title = document.querySelector('#title')
 let startBtn = document.querySelector('#start')
 let restartBtn = document.querySelector('#restart')
 let soundBtn =  document.querySelector('#sound')
+let sound1Btn =  document.querySelector('#sound1')
 
 // Game Over
 let gameOver = document.querySelector('#gameOver')
 gameOver.style.border = '4px solid grey'
-
 
 // Background
 let bg = new Image()
@@ -29,6 +30,10 @@ bg.src = './images/background.jpeg'
 // Pikacu
 let pika = new Image()
 pika.src = './images/pikachu.png'
+
+// Aquaman
+let aqua = new Image()
+aqua.src = './images/aquaman.jpeg'
 
 // Big rock
 let rock = new Image()
@@ -47,7 +52,7 @@ let pikaFall = 2, pikaX = 70, pikaY = 200;
 
 let isGameOver= false;
 let intervalId = 0
-let speed = 8
+let speed = 7
 let score = 0
 
 //Foreground
@@ -273,21 +278,20 @@ document.addEventListener('mouseup' , () => {
 
 //start the game    
 function start() {
+
     canvas.style.display = 'block'
     startBtn.style.display = 'none'
     restartBtn.style.display = 'none'
     title.style.display = 'none'
     gameOver.style.display = 'none'
-    audio.play()
-   
+    soundBtn.style.display = 'none'
+    sound1Btn.style.display = 'block'
+    
     ctx.drawImage(bg, 0, 0, canvas.width, 400)
 
 //foreground
     drawSand()
     drawWave()
-
-//sound button
-    soundBtn.style.display = 'none'
 
 //draw Pikachu
     ctx.drawImage(pika, pikaX, pikaY, 90, 90)
@@ -298,7 +302,7 @@ function start() {
 
         rockMovement[i].x = rockMovement[i].x - speed 
     
-        if(rockMovement[i].x <=8 && rockMovement[i].x >=5){
+        if(rockMovement[i].x <=15 && rockMovement[i].x >=5){
             score ++
             sound.play()
         }
@@ -325,7 +329,7 @@ function start() {
 
         birdMovement[i].x = birdMovement[i].x - speed 
 
-        if(birdMovement[i].x <= 0 && birdMovement[i].x >= -3){
+        if(birdMovement[i].x <= 0 && birdMovement[i].x >= -5){
             score ++
             sound.play()
         }
@@ -352,7 +356,7 @@ function start() {
 
         ballMovement[i].x = ballMovement[i].x - speed * 1.5
         
-        if(ballMovement[i].x < 20 && ballMovement[i].x > 0){
+        if(ballMovement[i].x < 10 && ballMovement[i].x > 0){
             score ++
             sound.play()
         }
@@ -374,19 +378,21 @@ function start() {
     }
     
     // scoreboard
-    ctx.font = '40px Georgia'
+    ctx.font = '60px Georgia'
     ctx.fillStyle = 'black'
     ctx.fillText(`Score is: ${score}`, canvas.width / 2 - 100, canvas.height - 20)
 
     //increase speed with higher score
     if(score >= 5){
-        speed = 10
+        speed = 9
     }else if(score >= 10){
-        speed = 12
+        speed = 11
     }else if(score >= 15){
+        speed = 11
+    }else if(score >= 20){
         speed = 15
     }else{
-        speed = 8
+        speed = 7
     }
 
     // collision with ground, top and objects
@@ -403,12 +409,13 @@ function start() {
         bummerBrah()  
         audio.pause()
         score = 0
-        speed = 8
+        speed = 7
         gameOverSong.play()
     }
     else {
         intervalId = requestAnimationFrame(start)
     }
+    
 }
 
 function bummerBrah(){
@@ -419,6 +426,11 @@ function bummerBrah(){
     title.style.display = 'none'
     gameOver.style.display = 'block'
     soundBtn.style.display = 'none'
+    sound1Btn.style.display = 'none'
+
+    // Your score
+    let gameOverDiv = document.querySelector('#gameOver h5')
+    gameOverDiv.innerHTML = `Your score: ${score}`
 
     // Reset Pikachu and objects
     pikaX = 70
@@ -433,10 +445,6 @@ function bummerBrah(){
         {x:canvas.width + 6000, y: 300}
     ]
     
-// Print score on Game Over
-    // ctx.font = '40px Georgia'
-    // ctx.fillStyle = 'black'
-    // ctx.fillText(`Score: ${score}`, canvas.width / 2 - 100, canvas.height - 20)
 }
 
 function splash(){
@@ -446,6 +454,7 @@ function splash(){
     startBtn.style.display = 'block'
     gameOver.style.display = 'none'
     soundBtn.style.display = 'block'
+    sound1Btn.style.display = 'none'
 }
 
  // start game
@@ -461,14 +470,32 @@ window.addEventListener('load', () => {
         // when you click the restart 
         start()
     })
-// sound button
+// sound button (on splash screen)
     soundBtn.addEventListener('click', () => {
         // when you click the sound
-        if(audio.play){
+        if(soundBtn.innerHTML == 'Sound'){
+            soundBtn.innerHTML = 'Mute'
             audio.pause()
+    
         }else{
-            audio.play
+            soundBtn.innerHTML = 'Sound'
+            audio.play()
+           
+        }
+    })
+
+    // sound button (in game)
+    sound1Btn.addEventListener('click', () => {
+        // when you click the sound
+        if(sound1Btn.innerHTML == 'Sound'){
+            sound1Btn.innerHTML = 'Mute'
+            audio.pause()
+            
+        }else{
+            sound1Btn.innerHTML = 'Sound'
+            audio.play()
+        
         }
     })
         
-    })
+ })

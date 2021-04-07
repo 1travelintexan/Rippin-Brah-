@@ -16,20 +16,31 @@ body{
     color: yellow;
     font-size: 120px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-shadow: 3px 12px rgb(32, 32, 43); 
+    text-shadow: 3px 12px 5px rgb(32, 32, 43); 
 }
-#title h5{
-    padding-top: 80px;
+#title h4{
+    padding-top: 60px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     font-family: 'Courier New', Courier, monospace;
     font-size: 45px;
     text-shadow: none;
-    color: blue;
-    text-shadow: 2px 2px rgb(32, 32, 43);
+    color: rgb(4, 255, 0);
+    text-shadow: 4px 4px 1px rgb(32, 32, 43);
 }
 
+#title h5{
+    margin-top: -40px;
+    padding-top: 0px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 45px;
+    color: rgb(4, 255, 0);
+    text-shadow: 5px 5px 1px rgb(32, 32, 43);
+}
 .buttons{
     height: 300px;
     display: flex;
@@ -45,7 +56,7 @@ body{
     font-size: 45px;
     background-color: blue;
     color: rgb(225, 225, 255);
-    box-shadow: 4px 4px black;
+    box-shadow: 4px 4px 5px black;
     margin-top: -300px;
 }
 
@@ -55,7 +66,7 @@ body{
     font-size: 45px;
     background-color: blue;
     color: rgb(225, 225, 255);
-    box-shadow: 4px 4px black;
+    box-shadow: 4px 4px 5px black;
     margin-top: 800px;
  }
 
@@ -67,7 +78,23 @@ body{
     color: rgb(225, 225, 255);
     box-shadow: 4px 4px black;
     margin-top: -300px;
-    margin-left: 200px;
+    margin-left: 400px;
+    z-index: 100;
+ }
+
+ #sound1{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 40px;
+    width: 110px;
+    font-size: 28px;
+    background-color: blue;
+    color: rgb(225, 225, 255);
+    box-shadow: 4px 4px black;
+    margin-top: 820px;
+    margin-left: 320px;
+    z-index: 100;
  }
 
  .canvas{
@@ -78,7 +105,7 @@ body{
 
  #gameOver{
     width: 1200px;
-    height: 1200px;
+    height: 800px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -92,10 +119,16 @@ body{
     background-size:1200px 800px ;
     background-position:top center ;
     margin-top: -430px;
-    margin-bottom: 0;
+    margin-bottom: -10px;
+    margin-left: -10px;
 }
  #gameOver h5{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    margin-top: 450px;
+    color:rgb(48, 255, 1);
     text-shadow: none;
-    color: blue;
-    text-shadow: 3px 3px rgb(32, 32, 43);
+    text-shadow: 8px 8px 2px rgb(32, 32, 43);
  }
