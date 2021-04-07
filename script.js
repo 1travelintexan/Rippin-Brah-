@@ -304,7 +304,9 @@ function start() {
     
         if(rockMovement[i].x <=15 && rockMovement[i].x >=5){
             score ++
-            sound.play()
+            if(sound1Btn.innerHTML == 'Mute'){
+                sound.play()
+            }          
         }
         if(rockMovement[i].x < - 200){
             rockMovement[i] = {x: 3000, y: canvas.height - 250}
@@ -331,7 +333,9 @@ function start() {
 
         if(birdMovement[i].x <= 0 && birdMovement[i].x >= -5){
             score ++
-            sound.play()
+            if(sound1Btn.innerHTML == 'Mute'){
+                sound.play()
+            }          
         }
         if(birdMovement[i].x < - 200){
             birdMovement[i] = {x: 3000, y: 200}
@@ -358,7 +362,9 @@ function start() {
         
         if(ballMovement[i].x < 10 && ballMovement[i].x > 0){
             score ++
-            sound.play()
+            if(sound1Btn.innerHTML == 'Mute'){
+                sound.play()
+            }                  
         }
         if(ballMovement[i].x < - 200){
             ballMovement[i] = {x: 3000, y: 300}
@@ -475,11 +481,11 @@ window.addEventListener('load', () => {
         // when you click the sound
         if(soundBtn.innerHTML == 'Sound'){
             soundBtn.innerHTML = 'Mute'
-            audio.pause()
+            audio.play()
     
         }else{
             soundBtn.innerHTML = 'Sound'
-            audio.play()
+            audio.pause()
            
         }
     })
@@ -489,12 +495,12 @@ window.addEventListener('load', () => {
         // when you click the sound
         if(sound1Btn.innerHTML == 'Sound'){
             sound1Btn.innerHTML = 'Mute'
-            audio.pause()
-            
-        }else{
-            sound1Btn.innerHTML = 'Sound'
             audio.play()
-        
+            
+        }
+        else {
+            sound1Btn.innerHTML = 'Sound'
+            audio.pause()      
         }
     })
         
