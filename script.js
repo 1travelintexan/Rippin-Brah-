@@ -33,21 +33,25 @@ pika.src = './images/pikachu.png'
 
 // extra characters ----------------------
 
-// // Aquaman
-// let aqua = new Image()
-// aqua.src = './images/aquaman.jpeg'
+// Aquaman
+let aqua = new Image()
+aqua.src = './images/aqua2.png'
 
-// // The Flash
-// let aqua = new Image()
-// aqua.src = './images/flash.jpeg'
+// The Flash
+let flash = new Image()
+flash.src = './images/flash2.png'
 
-// //Batman
-// let aqua = new Image()
-// aqua.src = './images/batman.png'
+//Batman
+let batman = new Image()
+batman.src = './images/batman2.png'
 
-// // Wonder Woman
-// let aqua = new Image()
-// aqua.src = './images/WW.jpeg'
+// Wonder Woman
+let WW = new Image()
+WW.src = './images/WW.png'
+
+// shark fin
+let shark = new Image()
+shark.src = './images/shark.png'
 
 //----------------------------------------------------------
 
@@ -293,6 +297,9 @@ document.addEventListener('mouseup' , () => {
     pikaFall = 2
 })
 
+// keys for characters
+let isBKey = false, isAKey = false;
+
 //start the game    
 function start() {
 
@@ -312,8 +319,6 @@ function start() {
 
 // Draw Pikachu
     ctx.drawImage(pika, pikaX, pikaY, 90, 90)
-
-// Easter Egg characters
 
 // Rock movement
     for(let i = 0; i < rockMovement.length; i++){
@@ -440,7 +445,30 @@ function start() {
     else {
         intervalId = requestAnimationFrame(start)
     }
+
+// easter egg 
+window.onkeydown = function(event) {
+    if (event.keyCode == 66) {
+        pika=batman
+    }
+    else if (event.keyCode == 65){
+        pika=aqua
+    }
+    else if (event.keyCode == 87){
+        pika=WW
+    }
+    else if (event.keyCode == 70){
+        pika=flash
+    } 
+    else if (event.keyCode == 80){
+        pika = pika
+    }
+    else if (event.keyCode == 83){
+        pika=shark
+    }
     
+};
+
 }
 
 function bummerBrah(){
