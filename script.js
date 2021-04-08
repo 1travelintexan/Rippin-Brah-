@@ -31,9 +31,25 @@ bg.src = './images/background.jpeg'
 let pika = new Image()
 pika.src = './images/pikachu.png'
 
-// Aquaman
-let aqua = new Image()
-aqua.src = './images/aquaman.jpeg'
+// extra characters ----------------------
+
+// // Aquaman
+// let aqua = new Image()
+// aqua.src = './images/aquaman.jpeg'
+
+// // The Flash
+// let aqua = new Image()
+// aqua.src = './images/flash.jpeg'
+
+// //Batman
+// let aqua = new Image()
+// aqua.src = './images/batman.png'
+
+// // Wonder Woman
+// let aqua = new Image()
+// aqua.src = './images/WW.jpeg'
+
+//----------------------------------------------------------
 
 // Big rock
 let rock = new Image()
@@ -54,6 +70,7 @@ let isGameOver= false;
 let intervalId = 0
 let speed = 7
 let score = 0
+let highScore = 0
 
 //Foreground
 function drawSand(){
@@ -293,10 +310,12 @@ function start() {
     drawSand()
     drawWave()
 
-//draw Pikachu
+// Draw Pikachu
     ctx.drawImage(pika, pikaX, pikaY, 90, 90)
 
-//rock movement
+// Easter Egg characters
+
+// Rock movement
     for(let i = 0; i < rockMovement.length; i++){
         ctx.drawImage(rock, rockMovement[i].x, rockMovement[i].y, 300, 300) 
 
@@ -325,7 +344,7 @@ function start() {
         }
     }
 
-//bird movement
+// Bird movement
     for(let i = 0; i < birdMovement.length; i++){
         ctx.drawImage(bird, birdMovement[i].x, birdMovement[i].y, 120, 120) 
 
@@ -354,7 +373,7 @@ function start() {
         }
     }
 
-    //Pokeball movement
+// Pokeball movement
     for(let i = 0; i < ballMovement.length; i++){
         ctx.drawImage(ball, ballMovement[i].x, ballMovement[i].y, 90, 90) 
 
@@ -383,12 +402,12 @@ function start() {
         }
     }
     
-    // scoreboard
+// Scoreboard
     ctx.font = '60px Georgia'
     ctx.fillStyle = 'black'
     ctx.fillText(`Score is: ${score}`, canvas.width / 2 - 100, canvas.height - 20)
 
-    //increase speed with higher score
+//increase speed with higher score
     if(score >= 5){
         speed = 9
     }else if(score >= 10){
@@ -401,7 +420,7 @@ function start() {
         speed = 7
     }
 
-    // collision with ground, top and objects
+// collision with ground, top and objects
     if(pikaY  > canvas.height - 170 || pikaY < 120){
         isGameOver = true
     } else {
@@ -409,7 +428,7 @@ function start() {
     pikaY = pikaY + pikaFall
     }
 
-    //Game Over
+//Game Over
     if(isGameOver){
         cancelAnimationFrame(intervalId)
         bummerBrah()  
@@ -433,6 +452,12 @@ function bummerBrah(){
     gameOver.style.display = 'block'
     soundBtn.style.display = 'none'
     sound1Btn.style.display = 'none'
+
+    // High Score
+    if(highScore < score){
+    let highScore = document.querySelector('#gameOver h3')
+    highScore.innerHTML = `High Score: ${score}`
+    }
 
     // Your score
     let gameOverDiv = document.querySelector('#gameOver h5')
@@ -463,7 +488,7 @@ function splash(){
     sound1Btn.style.display = 'none'
 }
 
- // start game
+// start game
 window.addEventListener('load', () => {
   splash()
     
