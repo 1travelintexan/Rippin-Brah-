@@ -413,14 +413,14 @@ function start() {
     ctx.fillText(`Score is: ${score}`, canvas.width / 2 - 100, canvas.height - 20)
 
 //increase speed with higher score
-    if(score >= 5){
-        speed = 9
-    }else if(score >= 10){
-        speed = 11
-    }else if(score >= 15){
-        speed = 11
-    }else if(score >= 20){
+    if(score >= 20){
+        speed = 18
+    }else if(score >=15 ){
         speed = 15
+    }else if(score >=10 ){
+        speed = 13
+    }else if(score >= 5){
+        speed = 10
     }else{
         speed = 7
     }
