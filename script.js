@@ -18,12 +18,11 @@ let h1 = document.querySelector("h1");
 let startBtn = document.querySelector("#start");
 let restartBtn = document.querySelector("#restart");
 let soundBtn = document.querySelector("#sound");
-let sound1Btn = document.querySelector("#sound1");
+let muteBtn = document.querySelector("#mute");
 
 // Game Over
 let gameOver = document.querySelector("#gameOver");
-gameOver.style.border = "4px solid grey";
-
+let gameOverDiv = document.querySelector(".gameOver-div");
 // Background
 let bg = new Image();
 bg.src = "./images/background.jpeg";
@@ -298,15 +297,15 @@ let isBKey = false,
 
 //start the game
 function start() {
-  audio.play();
   canvasDiv.style.display = "flex";
   canvas.style.display = "block";
   startBtn.style.display = "none";
   restartBtn.style.display = "none";
   title.style.display = "none";
+  gameOverDiv.style.display = "none";
   gameOver.style.display = "none";
   soundBtn.style.display = "none";
-  sound1Btn.style.display = "block";
+  muteBtn.style.display = "block";
   h1.style.display = "block";
 
   ctx.drawImage(bg, 0, 0, canvas.width, 400);
@@ -326,9 +325,6 @@ function start() {
 
     if (rockMovement[i].x <= 15 && rockMovement[i].x >= 5) {
       score++;
-      if (sound1Btn.innerHTML == "Mute") {
-        sound.play();
-      }
     }
     if (rockMovement[i].x < -200) {
       rockMovement[i] = { x: 3000, y: canvas.height - 250 };
@@ -359,9 +355,6 @@ function start() {
 
     if (birdMovement[i].x <= 0 && birdMovement[i].x >= -5) {
       score++;
-      if (sound1Btn.innerHTML == "Mute") {
-        sound.play();
-      }
     }
     if (birdMovement[i].x < -200) {
       birdMovement[i] = { x: 3000, y: 200 };
@@ -388,9 +381,6 @@ function start() {
 
     if (ballMovement[i].x < 10 && ballMovement[i].x > 0) {
       score++;
-      if (sound1Btn.innerHTML == "Mute") {
-        sound.play();
-      }
     }
     if (ballMovement[i].x < -200) {
       ballMovement[i] = { x: 3000, y: 300 };
@@ -442,7 +432,7 @@ function start() {
   //Game Over
   if (isGameOver) {
     cancelAnimationFrame(intervalId);
-    //bummerBrah();
+    bummerBrah();
     audio.pause();
     score = 0;
     speed = 7;
@@ -477,9 +467,10 @@ function bummerBrah() {
   startBtn.style.display = "none";
   restartBtn.style.display = "block";
   title.style.display = "none";
+  gameOverDiv.style.display = "flex";
   gameOver.style.display = "block";
   soundBtn.style.display = "none";
-  sound1Btn.style.display = "none";
+  muteBtn.style.display = "none";
 
   // High Score
   if (highScore < score) {
@@ -488,8 +479,8 @@ function bummerBrah() {
   }
 
   // Your score
-  let gameOverDiv = document.querySelector("#gameOver h5");
-  gameOverDiv.innerHTML = `Your score: ${score}`;
+  let yourScore = document.querySelector("#gameOver h5");
+  yourScore.innerHTML = `Your score: ${score}`;
 
   // Reset Pikachu and objects
   pikaX = 70;
@@ -506,8 +497,9 @@ function splash() {
   startBtn.style.display = "block";
   gameOver.style.display = "none";
   soundBtn.style.display = "block";
-  sound1Btn.style.display = "none";
+  muteBtn.style.display = "none";
   canvasDiv.style.display = "none";
+  gameOverDiv.style.display = "none";
 }
 
 // start game
@@ -517,11 +509,13 @@ window.addEventListener("load", () => {
   startBtn.addEventListener("click", () => {
     // when you click the start button
     start();
+    audio.play();
   });
 
   restartBtn.addEventListener("click", () => {
     // when you click the restart
     start();
+    audio.play();
   });
   // sound button (on splash screen)
   soundBtn.addEventListener("click", () => {
@@ -534,16 +528,14 @@ window.addEventListener("load", () => {
       audio.pause();
     }
   });
-
-  // sound button (in game)
-  sound1Btn.addEventListener("click", () => {
-    // when you click the sound
-    if (sound1Btn.innerHTML == "Sound") {
-      sound1Btn.innerHTML = "Mute";
-      audio.play();
-    } else {
-      sound1Btn.innerHTML = "Sound";
+  //mute button during the game
+  muteBtn.addEventListener("click", () => {
+    if (muteBtn.innerHTML == "Mute") {
+      muteBtn.innerHTML = "Sound";
       audio.pause();
+    } else {
+      muteBtn.innerHTML = "Mute";
+      audio.play();
     }
   });
 });
