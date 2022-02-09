@@ -1,148 +1,168 @@
-
-body{
-    background-color: aqua;
+body {
+  background-color: aqua;
+  margin-bottom: 0px;
+  padding: 0;
 }
 
-#title{
-    background-image: url("./images/beach\ .jpeg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 500px;
-    margin-bottom: 0px;
-}
-#title h1{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: yellow;
-    font-size: 120px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-shadow: 3px 12px 5px rgb(32, 32, 43); 
-}
-#title h4{
-    padding-top: 60px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 45px;
-    text-shadow: none;
-    color: rgb(4, 255, 0);
-    text-shadow: 4px 4px 1px rgb(32, 32, 43);
+.canvas-div {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#title h5{
-    margin-top: -40px;
-    padding-top: 0px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 45px;
-    color: rgb(4, 255, 0);
-    text-shadow: 5px 5px 1px rgb(32, 32, 43);
-}
-.buttons{
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0px;
-
+#canvas {
+  position: relative;
+  border: 6px solid rgb(14, 252, 73);
+  box-shadow: 4px 4px 8px grey;
 }
 
-#start{
-    height: 100px;
-    width: 250px;
-    font-size: 45px;
-    background-color: blue;
-    color: rgb(225, 225, 255);
-    box-shadow: 4px 4px 5px black;
-    margin-top: -300px;
+#title {
+  background-image: url("./images/beach\ .jpeg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 500px;
+  margin-bottom: 0px;
+  padding: 0;
+}
+h1 {
+  width: 100%;
+  color: yellow;
+  font-size: 120px;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-shadow: 3px 12px 5px rgb(32, 32, 43);
+  margin: 0;
+}
+#title h4 {
+  padding-top: 60px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 45px;
+  text-shadow: none;
+  color: rgb(4, 255, 0);
+  text-shadow: 4px 4px 1px rgb(32, 32, 43);
 }
 
- #restart{
-    height: 100px;
-    width: 250px;
-    font-size: 45px;
-    background-color: blue;
-    color: rgb(225, 225, 255);
-    box-shadow: 4px 4px 5px black;
-    margin-top: 800px;
- }
-
- #sound{
-    height: 50px;
-    width: 130px;
-    font-size: 35px;
-    background-color: blue;
-    color: rgb(225, 225, 255);
-    box-shadow: 4px 4px black;
-    margin-top: -300px;
-    margin-left: 400px;
-    z-index: 100;
- }
-
- #sound1{
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    height: 40px;
-    width: 110px;
-    font-size: 28px;
-    background-color: blue;
-    color: rgb(225, 225, 255);
-    box-shadow: 4px 4px black;
-    margin-top: 820px;
-    margin-left: 320px;
-    z-index: 100;
- }
-
- .canvas{
-     display: flex;
-     align-items: center;
-     justify-content: center;
- }
-
- #gameOver{
-    width: 1200px;
-    height: 800px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: yellow;
-    font-size: 60px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center;
-    text-shadow: 3px 12px rgb(18, 18, 26);
-    background-image: url("./images/gameOver.jpeg");
-    background-repeat: no-repeat;
-    background-size:1200px 800px ;
-    background-position:top center ;
-    margin-top: -430px;
-    margin-bottom: -10px;
-    margin-left: -10px;
+#title h5 {
+  margin-top: -40px;
+  padding-top: 0px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 45px;
+  color: rgb(4, 255, 0);
+  text-shadow: 5px 5px 1px rgb(32, 32, 43);
 }
- #gameOver h5{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 70px;
-    margin-top: 270px;
-    margin-right: 150px;
-    color:rgb(48, 255, 1);
-    text-shadow: none;
-    text-shadow: 8px 8px 2px rgb(32, 32, 43);
- }
+.buttons {
+  height: 90vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
 
- #gameOver h3{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    font-size: 30px;
-    margin-top: 150px;
-    margin-left: 50px;
-    color:rgb(255, 8, 243);
-    text-shadow: none;
-    text-shadow: 4px 4px 2px rgb(32, 32, 43);
- }
+#start {
+  height: 100px;
+  width: 250px;
+  font-size: 45px;
+  background-color: blue;
+  color: rgb(225, 225, 255);
+  box-shadow: 4px 4px 5px black;
+  margin-top: -300px;
+}
+
+#restart {
+  height: 100px;
+  width: 250px;
+  font-size: 45px;
+  background-color: blue;
+  color: rgb(225, 225, 255);
+  box-shadow: 4px 4px 5px black;
+  margin-top: 800px;
+}
+
+#sound {
+  height: 50px;
+  width: 130px;
+  font-size: 35px;
+  background-color: blue;
+  color: rgb(225, 225, 255);
+  box-shadow: 4px 4px black;
+  margin-top: -300px;
+  margin-left: 400px;
+  z-index: 100;
+}
+
+#sound1 {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 40px;
+  width: 110px;
+  font-size: 28px;
+  background-color: blue;
+  color: rgb(225, 225, 255);
+  box-shadow: 4px 4px black;
+  margin-top: 820px;
+  margin-left: 320px;
+  z-index: 100;
+}
+
+.canvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#gameOver {
+  width: 1200px;
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: yellow;
+  font-size: 60px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  text-shadow: 3px 12px rgb(18, 18, 26);
+  background-image: url("./images/gameOver.jpeg");
+  background-repeat: no-repeat;
+  background-size: 1200px 800px;
+  background-position: top center;
+  margin-top: -430px;
+  margin-bottom: -10px;
+  margin-left: -10px;
+}
+#gameOver h5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  margin-top: 270px;
+  margin-right: 150px;
+  color: rgb(48, 255, 1);
+  text-shadow: none;
+  text-shadow: 8px 8px 2px rgb(32, 32, 43);
+}
+
+#gameOver h3 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 30px;
+  margin-top: 150px;
+  margin-left: 50px;
+  color: rgb(255, 8, 243);
+  text-shadow: none;
+  text-shadow: 4px 4px 2px rgb(32, 32, 43);
+}

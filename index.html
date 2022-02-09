@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./images/shaka.png" />
     <title>Rippin Brah!!!</title>
-    <link rel="stylesheet" href="style.css" >
-</head>
-<body>
-    <div id = "title">
-        <h1 class="rippin">Rippin Brah!!!</h1>
-        <h4>Click your mouse to avoid all objects.</h4>
-        <h5>And make sure to stay on the wave.</h5>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 class="rippin">Rippin Brah!!!</h1>
+    <div id="title">
+      <h4>Click your mouse to avoid all objects.</h4>
+      <h5>And make sure to stay on the wave.</h5>
     </div>
-    <div class = "buttons">
-        <button id = "start" >Start Game</button>
-        <button id = "restart" >Restart</button>
-        <button id = "sound" >Sound</button>
-        <button id = "sound1" >Sound</button>
+    <div class="buttons">
+      <button id="start">Start Game</button>
+      <button id="restart">Restart</button>
+      <button id="sound">Sound</button>
+      <button id="sound1">Sound</button>
     </div>
     <div id="gameOver">
-        <h3></h3>
-        <h5></h5>
+      <h3></h3>
+      <h5></h5>
     </div>
-    <div>
-        <canvas class = "canvas" width = "800" height="600"></canvas>
+    <div class="canvas-div">
+      <canvas id="canvas" width="1400px" height="600"></canvas>
     </div>
     <!-- connecting your js files -->
-    <script src="script.js" ></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
