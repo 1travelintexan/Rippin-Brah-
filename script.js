@@ -11,8 +11,8 @@ gameOverSong.volume = 0.1;
 
 //  Paintbrush
 let ctx = canvas.getContext("2d");
-let title = document.querySelector("#title");
-let h1 = document.querySelector("h1");
+let splash = document.querySelector("#splash");
+let h1 = document.querySelector(".title");
 
 //  Buttons
 let startBtn = document.querySelector("#start");
@@ -74,7 +74,7 @@ let pikaFall = 2,
 
 let isGameOver = false;
 let intervalId = 0;
-let speed = 7;
+let speed = 8;
 let score = 0;
 let highScore = 0;
 
@@ -283,14 +283,6 @@ let birdMovement = [{ x: canvas.width + 1800, y: 200 }];
 // Pokeball starting
 let ballMovement = [{ x: canvas.width + 6000, y: 300 }];
 
-// Pikachu pumping on the wave
-document.addEventListener("mousedown", () => {
-  pikaFall = pikaFall * -2;
-});
-document.addEventListener("mouseup", () => {
-  pikaFall = 2;
-});
-
 // keys for characters
 let isBKey = false,
   isAKey = false;
@@ -301,7 +293,7 @@ function start() {
   canvas.style.display = "block";
   startBtn.style.display = "none";
   restartBtn.style.display = "none";
-  title.style.display = "none";
+  splash.style.display = "none";
   gameOverDiv.style.display = "none";
   gameOver.style.display = "none";
   soundBtn.style.display = "none";
@@ -315,7 +307,7 @@ function start() {
   drawWave();
 
   // Draw Pikachu
-  ctx.drawImage(pika, pikaX, pikaY, 90, 90);
+  ctx.drawImage(pika, pikaX, pikaY, 125, 125);
 
   // Rock movement
   for (let i = 0; i < rockMovement.length; i++) {
@@ -323,7 +315,7 @@ function start() {
 
     rockMovement[i].x = rockMovement[i].x - speed;
 
-    if (rockMovement[i].x <= 15 && rockMovement[i].x >= 5) {
+    if (rockMovement[i].x <= 8 && rockMovement[i].x > 0) {
       score++;
     }
     if (rockMovement[i].x < -200) {
@@ -353,7 +345,7 @@ function start() {
 
     birdMovement[i].x = birdMovement[i].x - speed;
 
-    if (birdMovement[i].x <= 0 && birdMovement[i].x >= -5) {
+    if (birdMovement[i].x <= 8 && birdMovement[i].x > 0) {
       score++;
     }
     if (birdMovement[i].x < -200) {
@@ -377,9 +369,9 @@ function start() {
   for (let i = 0; i < ballMovement.length; i++) {
     ctx.drawImage(ball, ballMovement[i].x, ballMovement[i].y, 90, 90);
 
-    ballMovement[i].x = ballMovement[i].x - speed * 1.5;
+    ballMovement[i].x = ballMovement[i].x - (speed + 2);
 
-    if (ballMovement[i].x < 10 && ballMovement[i].x > 0) {
+    if (ballMovement[i].x <= 8 && ballMovement[i].x > 0) {
       score++;
     }
     if (ballMovement[i].x < -200) {
@@ -409,16 +401,16 @@ function start() {
   );
 
   //increase speed with higher score
-  if (score >= 20) {
-    speed = 18;
-  } else if (score >= 15) {
-    speed = 15;
+  if (score >= 15) {
+    speed = 16;
   } else if (score >= 10) {
-    speed = 13;
-  } else if (score >= 5) {
+    speed = 14;
+  } else if (score >= 6) {
+    speed = 12;
+  } else if (score >= 3) {
     speed = 10;
   } else {
-    speed = 7;
+    speed = 8;
   }
 
   // collision with ground, top and objects
@@ -466,7 +458,7 @@ function bummerBrah() {
   canvasDiv.style.display = "none";
   startBtn.style.display = "none";
   restartBtn.style.display = "block";
-  title.style.display = "none";
+  splash.style.display = "none";
   gameOverDiv.style.display = "flex";
   gameOver.style.display = "block";
   soundBtn.style.display = "none";
@@ -490,21 +482,22 @@ function bummerBrah() {
   ballMovement = [{ x: canvas.width + 6000, y: 300 }];
 }
 
-function splash() {
+function splashScreen() {
   canvas.style.display = "none";
   restartBtn.style.display = "none";
-  title.style.display = "block";
+  splash.style.display = "flex";
   startBtn.style.display = "block";
   gameOver.style.display = "none";
   soundBtn.style.display = "block";
   muteBtn.style.display = "none";
   canvasDiv.style.display = "none";
   gameOverDiv.style.display = "none";
+  h1.style.display = "block";
 }
 
 // start game
 window.addEventListener("load", () => {
-  splash();
+  splashScreen();
 
   startBtn.addEventListener("click", () => {
     // when you click the start button
@@ -537,5 +530,18 @@ window.addEventListener("load", () => {
       muteBtn.innerHTML = "Mute";
       audio.play();
     }
+  });
+
+  // Pikachu pumping on the wave
+  document.addEventListener("mousedown", () => {
+    let currentPosition = pikaX;
+    console.log(currentPosition, pikaX);
+    pikaFall = pikaFall * -2;
+    if (currentPosition - pikaX > 5) {
+      pikaFall = 2;
+    }
+  });
+  document.addEventListener("mouseup", () => {
+    pikaFall = 2;
   });
 });
